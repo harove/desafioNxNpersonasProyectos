@@ -10,7 +10,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @employees_array = Employee.all.pluck([:name, :id])
+    @employees_array = Employee.all.pluck(:name, :id)
+  
   end
 
   # GET /projects/new
@@ -65,9 +66,9 @@ class ProjectsController < ApplicationController
   def add_employee
     employee = Employee.find(params[:employee][:id])
     @project = Project.find(params[:project_id])  
-    if @project.employees.where(id: params[:employee][:id]).empty?
+    #if @project.employees.where(id: params[:employee][:id]).empty?
       @project.employees << employee
-    end
+    #end
     redirect_to project_path(@project)
   end
 
@@ -76,6 +77,13 @@ class ProjectsController < ApplicationController
     project = Project.find(params[:project_id])
     project.employees.delete(employee)
     redirect_to project_path(project)
+  end
+
+  def employees
+    puts 'hola'
+    @project = Project.find(params[:project_id])
+    @employees = @project.employees
+    
   end
 
 

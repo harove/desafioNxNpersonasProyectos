@@ -5,22 +5,26 @@
   <%= @project.name %>
 </p>
 
-
 <%
 =begin%>
- <%= form_with model: [@project, Employee.new], url: project_employees_path(@project)  do |f| %>
-<%= f.select :id, @employees_array %>
-<%= f.submit 'add employee' %>
+ url: project_employees_path(@project)   projects/project_id/employee
+<%
+=end%>
+
+<%= form_with model:[@project, Employee.new] do |f|%>
+  <%= f.select :id, @employees_array%>
+  <%= f.submit %>
 <% end %>
 
-<% @project.employees.each do |employee|  %>
+
+<% @project.employees.each do |employee| %>
   <p> 
     <%= employee.name %> 
     <%= link_to "X",project_remove_employee_path(@project,employee), method: :delete %> 
   </p>
 <% end %> 
-<%
-=end%>
+
+
 
 
 <%= link_to 'Edit', edit_project_path(@project) %> |

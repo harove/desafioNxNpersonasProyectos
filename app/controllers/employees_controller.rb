@@ -36,6 +36,10 @@ class EmployeesController < ApplicationController
         format.json { render json: @employee.errors, status: :unprocessable_entity }
       end
     end
+  
+  
+  
+  
   end
 
   # PATCH/PUT /employees/1
